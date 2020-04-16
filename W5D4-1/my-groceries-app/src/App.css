@@ -1,0 +1,15 @@
+.grocery-list-container > div > ul > li:nth-child(odd){
+    background-color: bisque;
+}
+
+.grocery-list-container > div > ul > li:nth-child(even){
+    background-color: lightgoldenrodyellow;
+}
+
+.cart-list-container > div > ul > li:nth-child(odd){
+    background-color: lightskyblue;
+}
+
+.cart-list-container > div > ul > li:nth-child(even){
+    background-color: lightblue;
+}
