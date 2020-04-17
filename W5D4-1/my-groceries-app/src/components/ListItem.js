@@ -1,9 +1,10 @@
 import React from 'react';
 
 function ListItem (props){
-    const {title, clickHandler} = props;
+    const {title, clickHandler, amount} = props;
+    const showAmount = amount ? `Amount: ${amount}` : null;
     return(
-        <li onClick={clickHandler}>{title}</li>
+        <li onClick={clickHandler}>{title} {showAmount}</li>
     )
 }
 

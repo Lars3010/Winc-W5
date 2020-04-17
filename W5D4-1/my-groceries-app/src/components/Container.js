@@ -12,7 +12,9 @@ class Container extends React.Component{
                 {id: 3, title: 'bier'},
                 {id: 4, title: 'zalm'}
             ],
-            shoppingListItems: []
+            shoppingListItems: [
+                {id: 1, title: 'honing', amount: 1}
+            ]
         }
     }
 
@@ -21,15 +23,29 @@ class Container extends React.Component{
     }
 
     handleClickGroceryItem = (event) => {
-        const text = event.target.innerHTML;
-        this.setState(prevState => {
-            return {
-                shoppingListItems: [
-                    ...prevState.shoppingListItems,
-                    {id: prevState.shoppingListItems.length + 1, title: text}
-                ]
-            }
+        const text = event.target.innerHTML.trim();
+        const match = this.state.shoppingListItems.filter(item => {
+            return item.title === text
         })
+        
+
+        if(match.length > 0){
+            this.setState(prevState => ({
+                shoppingListItems: prevState.shoppingListItems.map( item => {
+                        return item.title === text ? {...item, amount: item.amount + 1} : item
+                    }
+                )
+            }))
+        } else {
+            this.setState(prevState => {
+                return {
+                    shoppingListItems: [
+                        ...prevState.shoppingListItems,
+                        {id: prevState.shoppingListItems.length + 1, title: text, amount: 1}
+                    ]
+                }
+            })
+        }
     }
 
     handleClickEmptyCart = (event) => {
@@ -39,8 +55,15 @@ class Container extends React.Component{
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        console.log(event);
-        
+        const text = event.target[0].value;
+        this.setState(prevState => {
+            return {
+                groceryItems: [
+                    ...prevState.groceryItems,
+                    {id: prevState.groceryItems.length + 1, title: text}
+                ]
+            }
+        })
     }
 
     render() {

@@ -5,7 +5,7 @@ function ShoppingCart(props){
     return(
         <div>
             <button onClick={props.clickHandler}>Leeg de winkelmand</button>
-            <List list={props.shoppingListItems}/>
+            <List list={props.shoppingListItems} readOnly={true}/>
         </div>
     )
 }
